@@ -10,13 +10,30 @@
             @csrf
 
             <div>
-                <x-label for="name" value="{{ __('Name') }}" />
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                <x-label for="nom" value="{{ __('nom') }}" />
+                <x-input id="nom" class="block mt-1 w-full" type="text" name="nom" :value="old('nom')" required autofocus autocomplete="nom" />
+            </div>
+            <div>
+                <x-label for="prenom" value="{{ __('Prénom') }}" />
+                <x-input id="prenom" class="block mt-1 w-full" type="text" name="prenom" :value="old('prenom')" required autocomplete="given-name" />
+            </div>
+            <div>
+                <x-label for="telephone" value="{{ __('Téléphone') }}" />
+                <x-input id="telephone" class="block mt-1 w-full" type="tel" name="telephone" :value="old('telephone')" required autocomplete="tel" />
             </div>
 
             <div class="mt-4">
                 <x-label for="email" value="{{ __('Email') }}" />
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+            </div>
+            <div class="mt-4">
+                <x-label for="campus_id" value="{{ __('Campus') }}" />
+                <select name="campus_id" id="campus_id" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required>
+                    <option value="">{{ __('Select a Campus') }}</option>
+                    @foreach ($campuses as $campus)
+                        <option value="{{ $campus->id }}" {{ old('campus_id') == $campus->id ? 'selected' : '' }}>{{ $campus->nom }}</option>
+                    @endforeach
+                </select>
             </div>
 
             <div class="mt-4">

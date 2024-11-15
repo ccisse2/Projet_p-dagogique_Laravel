@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Campus;
+use App\Models\Participant;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -10,14 +12,16 @@ use Illuminate\Support\Str;
 use Laravel\Jetstream\Features;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Participant>
  */
-class UserFactory extends Factory
+class ParticipantFactory extends Factory
 {
     /**
      * The current password being used by the factory.
      */
     protected static ?string $password;
+
+    protected $model = Participant::class;
 
     /**
      * Define the model's default state.
@@ -27,20 +31,22 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
+            'nom' => fake()->name(),
+            'prenom' => fake()->firstName(),
+            'telephone' => fake()->phoneNumber(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
+            'motPasse' => static::$password ??= Hash::make('password'),
+            'campus_id' => Campus::inRandomOrder()->first()->id,
             'two_factor_secret' => null,
             'two_factor_recovery_codes' => null,
             'remember_token' => Str::random(10),
             'profile_photo_path' => null,
-            'current_team_id' => null,
         ];
     }
 
     /**
-     * Indicate that the model's email address should be unverified.
+     *Indiquez que l'adresse e-mail du modèle ne doit pas être vérifiée.
      */
     public function unverified(): static
     {
@@ -50,9 +56,9 @@ class UserFactory extends Factory
     }
 
     /**
-     * Indicate that the user should have a personal team.
+     * Indiquez que l'utilisateur doit disposer d'une équipe personnelle.
      */
-    public function withPersonalTeam(?callable $callback = null): static
+    /*public function withPersonalTeam(?callable $callback = null): static
     {
         if (! Features::hasTeamFeatures()) {
             return $this->state([]);
@@ -68,5 +74,5 @@ class UserFactory extends Factory
                 ->when(is_callable($callback), $callback),
             'ownedTeams'
         );
-    }
+    }*/
 }

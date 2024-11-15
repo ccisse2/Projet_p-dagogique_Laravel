@@ -2,36 +2,36 @@
 
 return [
 
-    /*
-    |--------------------------------------------------------------------------
-    | Default Mailer
-    |--------------------------------------------------------------------------
+  /*
+    |------------------------------------------------- -------------------------
+    | Messagerie par défaut
+    |------------------------------------------------- -------------------------
     |
-    | This option controls the default mailer that is used to send all email
-    | messages unless another mailer is explicitly specified when sending
-    | the message. All additional mailers can be configured within the
-    | "mailers" array. Examples of each type of mailer are provided.
+    | Cette option contrôle le logiciel de messagerie par défaut utilisé pour envoyer tous les e-mails
+    | messages sauf si un autre logiciel de messagerie est explicitement spécifié lors de l'envoi
+    | le message. Tous les mailers supplémentaires peuvent être configurés dans le
+    | tableau "mailers". Des exemples de chaque type de courrier sont fournis.
     |
     */
 
     'default' => env('MAIL_MAILER', 'log'),
 
-    /*
-    |--------------------------------------------------------------------------
-    | Mailer Configurations
-    |--------------------------------------------------------------------------
+   /*
+    |------------------------------------------------- -------------------------
+    | Configurations de messagerie
+    |------------------------------------------------- -------------------------
     |
-    | Here you may configure all of the mailers used by your application plus
-    | their respective settings. Several examples have been configured for
-    | you and you are free to add your own as your application requires.
+    | Ici, vous pouvez configurer tous les mailers utilisés par votre application ainsi que
+    | leurs réglages respectifs. Plusieurs exemples ont été configurés pour
+    | vous et vous êtes libres d’ajouter le vôtre selon les besoins de votre candidature.
     |
-    | Laravel supports a variety of mail "transport" drivers that can be used
-    | when delivering an email. You may specify which one you're using for
-    | your mailers below. You may also add additional mailers if needed.
+    | Laravel prend en charge une variété de pilotes de « transport » de courrier qui peuvent être utilisés
+    | lors de la livraison d'un e-mail. Vous pouvez spécifier celui que vous utilisez pour
+    | vos mailers ci-dessous. Vous pouvez également ajouter des courriers supplémentaires si nécessaire.
     |
-    | Supported: "smtp", "sendmail", "mailgun", "ses", "ses-v2",
-    |            "postmark", "resend", "log", "array",
-    |            "failover", "roundrobin"
+    | Pris en charge : "smtp", "sendmail", "mailgun", "ses", "ses-v2",
+    |            "cachet de la poste", "renvoyer", "journal", "tableau",
+    |            "basculement", "tourniquet"
     |
     */
 
@@ -97,19 +97,19 @@ return [
 
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Global "From" Address
-    |--------------------------------------------------------------------------
+/*
+    |------------------------------------------------- -------------------------
+    | Adresse globale « De »
+    |------------------------------------------------- -------------------------
     |
-    | You may wish for all emails sent by your application to be sent from
-    | the same address. Here you may specify a name and address that is
-    | used globally for all emails that are sent by your application.
+    | Vous souhaiterez peut-être que tous les e-mails envoyés par votre candidature soient envoyés depuis
+    | la même adresse. Ici, vous pouvez spécifier un nom et une adresse qui sont
+    | utilisé globalement pour tous les e-mails envoyés par votre application.
     |
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'poutlar91@gmail.com'),
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 

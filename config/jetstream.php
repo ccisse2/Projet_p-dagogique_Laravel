@@ -5,27 +5,27 @@ use Laravel\Jetstream\Http\Middleware\AuthenticateSession;
 
 return [
 
-    /*
-    |--------------------------------------------------------------------------
-    | Jetstream Stack
-    |--------------------------------------------------------------------------
+  /*
+    |------------------------------------------------- -------------------------
+    | Pile Jetstream
+    |------------------------------------------------- -------------------------
     |
-    | This configuration value informs Jetstream which "stack" you will be
-    | using for your application. In general, this value is set for you
-    | during installation and will not need to be changed after that.
+    | Cette valeur de configuration informe Jetstream de quelle "pile" vous serez
+    | utiliser pour votre application. En général, cette valeur est définie pour vous
+    | lors de l'installation et n'aura pas besoin d'être modifié par la suite.
     |
     */
 
     'stack' => 'livewire',
 
-    /*
-    |--------------------------------------------------------------------------
-    | Jetstream Route Middleware
-    |--------------------------------------------------------------------------
+  /*
+    |------------------------------------------------- -------------------------
+    | Intergiciel de route Jetstream
+    |------------------------------------------------- -------------------------
     |
-    | Here you may specify which middleware Jetstream will assign to the routes
-    | that it registers with the application. When necessary, you may modify
-    | these middleware; however, this default value is usually sufficient.
+    | Ici, vous pouvez spécifier quel middleware Jetstream attribuera aux routes
+    | qu'il s'enregistre auprès de l'application. Si nécessaire, vous pouvez modifier
+    | ces middlewares ; cependant, cette valeur par défaut est généralement suffisante.
     |
     */
 
@@ -33,46 +33,45 @@ return [
 
     'auth_session' => AuthenticateSession::class,
 
-    /*
-    |--------------------------------------------------------------------------
-    | Jetstream Guard
-    |--------------------------------------------------------------------------
+/*
+    |------------------------------------------------- -------------------------
+    | Garde Jetstream
+    |------------------------------------------------- -------------------------
     |
-    | Here you may specify the authentication guard Jetstream will use while
-    | authenticating users. This value should correspond with one of your
-    | guards that is already present in your "auth" configuration file.
+    | Ici, vous pouvez spécifier le garde d'authentification que Jetstream utilisera pendant
+    | authentifier les utilisateurs. Cette valeur doit correspondre à l'un de vos
+    | guards qui est déjà présent dans votre fichier de configuration "auth".
     |
     */
 
     'guard' => 'sanctum',
-
-    /*
-    |--------------------------------------------------------------------------
-    | Features
-    |--------------------------------------------------------------------------
+/*
+    |------------------------------------------------- -------------------------
+    | Caractéristiques
+    |------------------------------------------------- -------------------------
     |
-    | Some of Jetstream's features are optional. You may disable the features
-    | by removing them from this array. You're free to only remove some of
-    | these features or you can even remove all of these if you need to.
+    | Certaines fonctionnalités de Jetstream sont facultatives. Vous pouvez désactiver les fonctionnalités
+    | en les supprimant de ce tableau. Vous êtes libre de supprimer seulement certains
+    | ces fonctionnalités ou vous pouvez même supprimer toutes ces fonctionnalités si vous en avez besoin.
     |
     */
 
     'features' => [
         // Features::termsAndPrivacyPolicy(),
-        // Features::profilePhotos(),
+        Features::profilePhotos(),
         // Features::api(),
         // Features::teams(['invitations' => true]),
         Features::accountDeletion(),
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Profile Photo Disk
-    |--------------------------------------------------------------------------
+ /*
+    |------------------------------------------------- -------------------------
+    | Disque de photos de profil
+    |------------------------------------------------- -------------------------
     |
-    | This configuration value determines the default disk that will be used
-    | when storing profile photos for your application's users. Typically
-    | this will be the "public" disk but you may adjust this if needed.
+    | Cette valeur de configuration détermine le disque par défaut qui sera utilisé
+    | lors du stockage des photos de profil des utilisateurs de votre application. Typiquement
+    | ce sera le disque "public" mais vous pourrez l'ajuster si nécessaire.
     |
     */
 

@@ -4,19 +4,20 @@ use Illuminate\Support\Str;
 
 return [
 
-    /*
+        /*
     |--------------------------------------------------------------------------
-    | Default Database Connection Name
+    | Nom de la Connexion de Base de Données par Défaut
     |--------------------------------------------------------------------------
     |
-    | Here you may specify which of the database connections below you wish
-    | to use as your default connection for database operations. This is
-    | the connection which will be utilized unless another connection
-    | is explicitly specified when you execute a query / statement.
+    | Ici, vous pouvez spécifier laquelle des connexions de base de données
+    | ci-dessous vous souhaitez utiliser comme connexion par défaut pour
+    | les opérations de base de données. C'est la connexion qui sera
+    | utilisée à moins qu'une autre connexion ne soit explicitement
+    | spécifiée lorsque vous exécutez une requête / instruction.
     |
     */
 
-    'default' => env('DB_CONNECTION', 'sqlite'),
+    'default' => env('DB_CONNECTION', 'mysql'),
 
     /*
     |--------------------------------------------------------------------------

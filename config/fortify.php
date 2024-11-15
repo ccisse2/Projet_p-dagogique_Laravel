@@ -4,14 +4,14 @@ use Laravel\Fortify\Features;
 
 return [
 
-    /*
-    |--------------------------------------------------------------------------
-    | Fortify Guard
-    |--------------------------------------------------------------------------
+   /*
+    |------------------------------------------------- -------------------------
+    | Fortifier la garde
+    |------------------------------------------------- -------------------------
     |
-    | Here you may specify which authentication guard Fortify will use while
-    | authenticating users. This value should correspond with one of your
-    | guards that is already present in your "auth" configuration file.
+    | Ici, vous pouvez spécifier quel agent d'authentification Fortify utilisera pendant
+    | authentifier les utilisateurs. Cette valeur doit correspondre à l'un de vos
+    | guards qui est déjà présent dans votre fichier de configuration "auth".
     |
     */
 
@@ -62,27 +62,27 @@ return [
 
     'lowercase_usernames' => true,
 
-    /*
-    |--------------------------------------------------------------------------
-    | Home Path
-    |--------------------------------------------------------------------------
+/*
+    |------------------------------------------------- -------------------------
+    | Chemin d'accueil
+    |------------------------------------------------- -------------------------
     |
-    | Here you may configure the path where users will get redirected during
-    | authentication or password reset when the operations are successful
-    | and the user is authenticated. You are free to change this value.
+    | Ici, vous pouvez configurer le chemin vers lequel les utilisateurs seront redirigés pendant
+    | authentification ou réinitialisation du mot de passe lorsque les opérations réussissent
+    | et l'utilisateur est authentifié. Vous êtes libre de modifier cette valeur.
     |
     */
 
     'home' => '/dashboard',
 
     /*
-    |--------------------------------------------------------------------------
-    | Fortify Routes Prefix / Subdomain
-    |--------------------------------------------------------------------------
+    |------------------------------------------------- -------------------------
+    | Fortifier le préfixe/sous-domaine des routes
+    |------------------------------------------------- -------------------------
     |
-    | Here you may specify which prefix Fortify will assign to all the routes
-    | that it registers with the application. If necessary, you may change
-    | subdomain under which all of the Fortify routes will be available.
+    | Ici, vous pouvez spécifier quel préfixe Fortify attribuera à toutes les routes
+    | qu'il s'enregistre auprès de l'application. Si nécessaire, vous pouvez modifier
+    | sous-domaine sous lequel toutes les routes Fortify seront disponibles.
     |
     */
 
@@ -90,27 +90,27 @@ return [
 
     'domain' => null,
 
-    /*
-    |--------------------------------------------------------------------------
-    | Fortify Routes Middleware
-    |--------------------------------------------------------------------------
+  /*
+    |------------------------------------------------- -------------------------
+    | Fortifier le middleware des routes
+    |------------------------------------------------- -------------------------
     |
-    | Here you may specify which middleware Fortify will assign to the routes
-    | that it registers with the application. If necessary, you may change
-    | these middleware but typically this provided default is preferred.
+    | Ici, vous pouvez spécifier quel middleware Fortify attribuera aux routes
+    | qu'il s'enregistre auprès de l'application. Si nécessaire, vous pouvez modifier
+    | ces middlewares, mais généralement cette valeur par défaut est préférée.
     |
     */
 
     'middleware' => ['web'],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Rate Limiting
-    |--------------------------------------------------------------------------
+   /*
+    |------------------------------------------------- -------------------------
+    | Limitation du débit
+    |------------------------------------------------- -------------------------
     |
-    | By default, Fortify will throttle logins to five requests per minute for
-    | every email and IP address combination. However, if you would like to
-    | specify a custom rate limiter to call then you may specify it here.
+    | Par défaut, Fortify limitera les connexions à cinq requêtes par minute pour
+    | chaque combinaison d’e-mail et d’adresse IP. Toutefois, si vous souhaitez
+    | spécifiez un limiteur de débit personnalisé à appeler, vous pouvez le spécifier ici.
     |
     */
 
@@ -119,34 +119,34 @@ return [
         'two-factor' => 'two-factor',
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Register View Routes
-    |--------------------------------------------------------------------------
+   /*
+    |------------------------------------------------- -------------------------
+    | S'inscrire Voir les itinéraires
+    |------------------------------------------------- -------------------------
     |
-    | Here you may specify if the routes returning views should be disabled as
-    | you may not need them when building your own application. This may be
-    | especially true if you're writing a custom single-page application.
+    | Ici, vous pouvez spécifier si les itinéraires renvoyant des vues doivent être désactivés.
+    | vous n’en aurez peut-être pas besoin lors de la création de votre propre application. Cela peut être
+    | particulièrement vrai si vous écrivez une application personnalisée d'une seule page.
     |
     */
 
     'views' => true,
 
     /*
-    |--------------------------------------------------------------------------
-    | Features
-    |--------------------------------------------------------------------------
+    |------------------------------------------------- -------------------------
+    | Caractéristiques
+    |------------------------------------------------- -------------------------
     |
-    | Some of the Fortify features are optional. You may disable the features
-    | by removing them from this array. You're free to only remove some of
-    | these features or you can even remove all of these if you need to.
+    | Certaines des fonctionnalités de Fortify sont facultatives. Vous pouvez désactiver les fonctionnalités
+    | en les supprimant de ce tableau. Vous êtes libre de supprimer seulement certains
+    | ces fonctionnalités ou vous pouvez même supprimer toutes ces fonctionnalités si vous en avez besoin.
     |
     */
 
     'features' => [
         Features::registration(),
         Features::resetPasswords(),
-        // Features::emailVerification(),
+        Features::emailVerification(),
         Features::updateProfileInformation(),
         Features::updatePasswords(),
         Features::twoFactorAuthentication([

@@ -7,6 +7,14 @@
 
     <div>
         <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+            <!-- Affichage de la photo de profil
+            <div class="flex items-center mb-6">
+                <img src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->nom }}" class="rounded-full h-20 w-20 object-cover">
+                <div class="ml-4">
+                    <h3 class="text-lg font-medium text-gray-900">{{ Auth::user()->nom }}</h3>
+                    <p class="text-sm text-gray-500">{{ Auth::user()->email }}</p>
+                </div>
+            </div>-->
             @if (Laravel\Fortify\Features::canUpdateProfileInformation())
                 @livewire('profile.update-profile-information-form')
 

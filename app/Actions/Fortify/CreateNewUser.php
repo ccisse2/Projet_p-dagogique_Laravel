@@ -2,6 +2,7 @@
 
 namespace App\Actions\Fortify;
 
+use App\Models\Participant;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -17,19 +18,25 @@ class CreateNewUser implements CreatesNewUsers
      *
      * @param  array<string, string>  $input
      */
-    public function create(array $input): User
+    public function create(array $input): Participant
     {
         Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'nom' => ['required', 'string', 'max:50'],
+            'prenom' => ['required','string','max:50'],
+            'telephone' => ['required','string','max:20'],
+            'email' => ['required', 'string', 'email', 'max:100', 'unique:users'],
+            'campus_id' => ['required', 'exists:campuses,id'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
-        return User::create([
-            'name' => $input['name'],
+        return Participant::create([
+            'nom' => $input['nom'],
+            'prenom' => $input['prenom'],
+            'telephone' => $input['telephone'],
             'email' => $input['email'],
-            'password' => Hash::make($input['password']),
+            'campus_id' => $input['campus_id'],
+            'motPasse' => Hash::make($input['password']),
         ]);
     }
 }

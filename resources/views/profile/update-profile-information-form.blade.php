@@ -4,7 +4,7 @@
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Update your account\'s profile information and email address.') }}
+        {{ __('Mettez à jour les informations de profil et l\'adresse e-mail de votre compte.') }}
     </x-slot>
 
     <x-slot name="form">
@@ -28,7 +28,7 @@
 
                 <!-- Current Profile Photo -->
                 <div class="mt-2" x-show="! photoPreview">
-                    <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->name }}" class="rounded-full h-20 w-20 object-cover">
+                    <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->nom }}" class="rounded-full h-20 w-20 object-cover">
                 </div>
 
                 <!-- New Profile Photo Preview -->
@@ -39,12 +39,12 @@
                 </div>
 
                 <x-secondary-button class="mt-2 me-2" type="button" x-on:click.prevent="$refs.photo.click()">
-                    {{ __('Select A New Photo') }}
+                    {{ __('Sélectionnez une nouvelle photo') }}
                 </x-secondary-button>
 
                 @if ($this->user->profile_photo_path)
                     <x-secondary-button type="button" class="mt-2" wire:click="deleteProfilePhoto">
-                        {{ __('Remove Photo') }}
+                        {{ __('Supprimer la photo') }}
                     </x-secondary-button>
                 @endif
 
@@ -54,11 +54,24 @@
 
         <!-- Name -->
         <div class="col-span-6 sm:col-span-4">
-            <x-label for="name" value="{{ __('Name') }}" />
-            <x-input id="name" type="text" class="mt-1 block w-full" wire:model="state.name" required autocomplete="name" />
-            <x-input-error for="name" class="mt-2" />
+            <x-label for="nom" value="{{ __('nom') }}" />
+            <x-input id="nom" type="text" class="mt-1 block w-full" wire:model="state.nom" required autocomplete="nom" />
+            <x-input-error for="nom" class="mt-2" />
         </div>
 
+        <!-- prenom -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-label for="prenom" value="{{ __('prénom') }}" />
+            <x-input id="prenom" type="text" class="mt-1 block w-full" wire:model="state.prenom" required autocomplete="given-name" />
+            <x-input-error for="prenom" class="mt-2" />
+        </div>
+
+        <!-- téléphone -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-label for="telephone" value="{{ __('téléphone') }}" />
+            <x-input id="telephone" type="tel" class="mt-1 block w-full" wire:model="state.telephone" required autocomplete="tel" />
+            <x-input-error for="telephone" class="mt-2" />
+        </div>
         <!-- Email -->
         <div class="col-span-6 sm:col-span-4">
             <x-label for="email" value="{{ __('Email') }}" />
@@ -67,16 +80,16 @@
 
             @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::emailVerification()) && ! $this->user->hasVerifiedEmail())
                 <p class="text-sm mt-2">
-                    {{ __('Your email address is unverified.') }}
+                    {{ __('Votre adresse e-mail n\'est pas vérifiée.') }}
 
                     <button type="button" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" wire:click.prevent="sendEmailVerification">
-                        {{ __('Click here to re-send the verification email.') }}
+                        {{ __('Cliquez ici pour renvoyer l\'e-mail de vérification.') }}
                     </button>
                 </p>
 
                 @if ($this->verificationLinkSent)
                     <p class="mt-2 font-medium text-sm text-green-600">
-                        {{ __('A new verification link has been sent to your email address.') }}
+                        {{ __('Un nouveau lien de vérification a été envoyé à votre adresse e-mail.') }}
                     </p>
                 @endif
             @endif
@@ -85,11 +98,11 @@
 
     <x-slot name="actions">
         <x-action-message class="me-3" on="saved">
-            {{ __('Saved.') }}
+            {{ __('Enregistré.') }}
         </x-action-message>
 
         <x-button wire:loading.attr="disabled" wire:target="photo">
-            {{ __('Save') }}
+            {{ __('Sauvegarder') }}
         </x-button>
     </x-slot>
 </x-form-section>
