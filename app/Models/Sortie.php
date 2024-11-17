@@ -15,6 +15,7 @@ class Sortie extends Model
         'lieu_id', 'campus_id', 'organisateur_id'
     ];
 
+
     public function etat(){
         return $this->belongsTo(Etat::class);
     }
