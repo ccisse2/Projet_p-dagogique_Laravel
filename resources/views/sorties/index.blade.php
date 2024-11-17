@@ -1,5 +1,19 @@
 <x-app-layout class="mb-4" >
-    <div class="container mx-auto px-4 ">
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Sorties') }}
+        </h2>
+    </x-slot>
+    @if (session('success'))
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
+            <span class="block sm:inline">{{ session('success') }}</span>
+            <button type="button" class="absolute top-0 bottom-0 right-0 px-4 py-3" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+
+    <div class="container mx-auto px-4 py-12 ">
         <h1 class="text-3xl font-bold text-gray-700 mb-6">Liste des sorties</h1>
 
         <!-- Filtre -->
@@ -71,6 +85,20 @@
                         <td class="px-4 py-3">{{ $sortie->organisateur->nom }}</td>
                         <td class="px-4 py-3 space-x-2">
                             <a href="{{ route('sorties.details', $sortie->id) }}" class="text-blue-600 hover:underline">Afficher</a>
+                            @if($sortie->organisateur_id == $user->id)
+                                <a href="{{ route('sorties.edit', $sortie->id) }}" class="text-blue-600 hover:underline">Modifier</a>
+                            @if($sortie->etat->libelle != 'Ouverte')
+                                <form action="{{ route('sorties.publier', $sortie->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-primary">Publier</button>
+                                </form>
+                                @endif
+
+                                <form action="{{ route('sorties.delete', $sortie->id) }}" method="POST" class="inline">
+                                    @csrf
+                                    <button type="submit" class="text-red-600 hover:underline">Supprimer</button>
+                                </form>
+                            @endif
                             @if($sortie->participants->contains($user->id))
                                 <a href="{{ route('sorties.details', $sortie->id) }}" class="text-red-600 hover:underline">Se désister</a>
                             @else
@@ -85,9 +113,15 @@
                 </tbody>
             </table>
         </div>
+        <!--button créer une sortie-->
+        <div class="pt-3 my-3">
+        <a href="{{ route('sorties.create') }}" class="p-2  w-full md:w-auto bg-blue-500 text-white font-semibold rounded-md border border-blue-500 hover:bg-blue-600">
+            Créer une sortie
+        </a>
+        </div>
 
         <!-- Pagination -->
-        <div class="my-6">
+        <div class=" pt-2 ">
             {{ $sorties->links() }}
         </div>
     </div>

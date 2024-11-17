@@ -1,5 +1,18 @@
 <x-app-layout class="my-8">
-    <div class="container mx-auto my-8 p-4 bg-white shadow rounded-lg">
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __(' Detail  de la Sorties '. $sortie->nom ) }}
+        </h2>
+    </x-slot>
+    @if (session('success'))
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
+            <span class="block sm:inline">{{ session('success') }}</span>
+            <button type="button" class="absolute top-0 bottom-0 right-0 px-4 py-3" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+    <div class="container mx-auto my-8 p-4 py-12 bg-white shadow rounded-lg">
         <h1 class="text-2xl font-bold mb-6">Afficher une sortie</h1>
 
         <div class="grid grid-cols-2 gap-8 mb-8">

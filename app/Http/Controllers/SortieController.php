@@ -111,8 +111,13 @@ class SortieController extends Controller
                 'lieu_id.exists' => 'Le lieu sélectionné est invalide.',
             ]);
 
-        //rajouter l'état de la sortie en récuperant l'état 'en creation' en basse de donner
-        $etat = Etat::firstOrCreate(['libelle' => 'En création']);
+        // Déterminer l'état en fonction du bouton cliqué
+        $action = $request->input('action');
+
+        $etatLibelle = $action === 'publish' ? 'Ouverte' : 'En création';
+
+
+        $etat = Etat::firstOrCreate(['libelle' => $etatLibelle])->firstOrFail();
 
         $sortie = new Sortie($validated);
         $sortie->etat()->associate($etat);
@@ -120,6 +125,48 @@ class SortieController extends Controller
         $sortie->save();
 
 
-        return redirect()->route('sorties.index')->with('success', 'La sortie a bien été créée');
+        return redirect()->route('sorties.index')->with('success', 'La sortie a bien été créée et est ' .$etatLibelle);
+    }
+
+    public function publish($id)
+    {
+        $sortie = Sortie::findOrFail($id);
+
+        // Vérification que l'utilisateur actuel est bien l'organisateur
+        if (Auth::user()->id != $sortie->organisateur_id) {
+            return redirect()->route('sorties.index')->with('error', 'Vous ne pouvez pas publier cette sortie car vous n\'êtes pas l\'organisateur.');
+        }
+
+        // Vérification de l'état actuel de la sortie
+        if ($sortie->etat && $sortie->etat->libelle !== 'En création') {
+            return redirect()->route('sorties.index')->with('error', 'La sortie ne peut pas être publiée car elle est a l\'état "Ouverte".');
+        }
+
+        // Récupération ou création de l'état "Ouverte"
+        $etatOuverte = Etat::firstOrCreate(['libelle' => 'Ouverte']);
+
+        // Mise à jour de l'état de la sortie
+        $sortie->etat()->associate($etatOuverte);
+        $sortie->save();
+
+        return redirect()->route('sorties.index')->with('success', 'La sortie a bien été publiée.');
+    }
+
+    public function delete($id){
+        $sortie = Sortie::find($id);
+
+        // Vérification que l'utilisateur actuel est bien l'organisateur
+        if (Auth::user()->id!= $sortie->organisateur_id) {
+            return redirect()->route('sorties.index')->with('error', 'Vous ne pouvez pas supprimer cette sortie car vous n\'êtes pas l\'organisateur.');
+        }
+
+        $sortie->delete();
+
+        return redirect()->route('sorties.index')->with('success', 'La sortie a bien été supprimée.');
+    }
+
+    public function edit(request $request){
+
+
     }
 }

@@ -45,6 +45,7 @@ Route::get('/profile', function () {
 })->middleware(['auth', 'verified']);
 
 Route::get('/sorties', [SortieController::class, 'index'])->name('sorties.index')->middleware('auth');
+
 Route::post('/sorties', [SortieController::class, 'store'])->name('sorties.store');
 
 Route::get('/sorties/create', [SortieController::class, 'create'])->name('sorties.create');
@@ -53,4 +54,9 @@ Route::get('/sorties/details/{id}', [SortieController::class, 'details'])->name(
 
 Route::post('/sorties/{id}/inscription', [SortieController::class,'subscribeToSortie'])->name('sorties.inscrire')->middleware('auth');
 
+Route::post('/sorties/{id}/publier', [SortieController::class, 'publish'])->name('sorties.publier')->middleware('auth');
+
+Route::get('/sorties/{id}/modifier', [SortieController::class, 'modify'])->name('sorties.edit')->middleware('auth');
+
+Route::post('/sorties/{id}/delete', [SortieController::class, 'delete'])->name('sorties.delete')->middleware('auth');
 
